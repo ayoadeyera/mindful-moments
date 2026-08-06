@@ -16,3 +16,42 @@ body {
   display: flex;
   min-height: 100vh;
 }
+
+
+.nav-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.25rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #555;
+  border-radius: 8px;
+  cursor: pointer;
+  
+}
+
+.nav-item:hover {
+  background: #ddd6c8;
+  
+}
+
+.nav-item.active {
+  background: var(--color-sage);
+  color: white;
+  font-weight: 500;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #ddd6c8;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
