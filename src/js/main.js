@@ -1,4 +1,4 @@
-import './style.css'
+import '../style.css'
 
 const views = {
   today: () => `<h1>How are you feeling today?</h1><p>Mood picker goes here.</p>`,
