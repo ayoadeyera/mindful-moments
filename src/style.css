@@ -31,12 +31,10 @@ body {
   color: #555;
   border-radius: 8px;
   cursor: pointer;
-  
 }
 
 .nav-item:hover {
   background: #ddd6c8;
-  
 }
 
 .nav-item.active {

@@ -1,11 +1,10 @@
 import './style.css'
 
 const views = {
-  today: () => '<h1> How are you feeling today?</h1><p>Mood picker goes here.</p>',
-  sanctuary: () => '<h1>Sanctuary</h1>Saved favorites go here.</p>',
-  history: () => '<h1>Mood History</h1><p>7-day view goes here.</p>',
+  today: () => `<h1>How are you feeling today?</h1><p>Mood picker goes here.</p>`,
+  sanctuary: () => `<h1>My sanctuary</h1><p>Saved favorites go here.</p>`,
+  history: () => `<h1>Mood history</h1><p>7-day view goes here.</p>`,
 }
-
 
 const viewContainer = document.querySelector('#view-container')
 const navButtons = document.querySelectorAll('.nav-item')
@@ -23,3 +22,5 @@ navButtons.forEach((button) => {
     showView(button.dataset.view)
   })
 })
+
+showView('today')
