@@ -1,0 +1,18 @@
+:root {
+  --color-sage: #6b8e5a;
+  --color-terracotta: #c97b4a;
+  --color-sand: #e8e1d3;
+  --font-heading: "Quicksand", sans-serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-sand);
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+}

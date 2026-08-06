@@ -1,0 +1,19 @@
+{
+  "name": "mindful-moments",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+  "start": "vite",
+  "build": "vite build --emptyOutDir",
+  "lint": "eslint *.js src/**/*.js",
+  "format": "prettier --write \"./**/*.{html,json,js,css}\""
+},
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0",
+    "prettier": "^3.9.6",
+    "vite": "^8.2.0"
+  }
+}
