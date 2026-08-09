@@ -2,6 +2,8 @@ import '../css/style.css'
 import { renderMoodPicker } from './mood.js'
 import { getQuote } from './quote.js'
 import { getImage, triggerDownload } from './visual.js'
+import { saveFavorite, getFavorites, removeFavorite } from './storage.js'
+
 
 function renderToday(container) {
   container.innerHTML = `
@@ -31,19 +33,74 @@ function renderToday(container) {
         <blockquote>"${quote.content}"</blockquote>
         <p class="quote-author">— ${quote.author}</p>
         ${attributionHtml}
+        <button class="save-btn" type="button">♡ Save to sanctuary</button>
       </div>
     `
 
     if (image) {
       triggerDownload(image.downloadLocation)
     }
+
+    const saveBtn = resultEl.querySelector('.save-btn')
+    saveBtn.addEventListener('click', () => {
+      saveFavorite({
+        quote: quote.content,
+        author: quote.author,
+        imageUrl: image ? image.url : null,
+      })
+      saveBtn.textContent = '♥ Saved'
+      saveBtn.disabled = true
+    })
   })
 }
 
 function renderSanctuary(container) {
-  container.innerHTML = '<h1>My sanctuary</h1><p>Saved favorites go here.</p>'
-}
+  const favorites = getFavorites()
 
+  if (favorites.length === 0) {
+    container.innerHTML = `
+      <h1>My sanctuary</h1>
+      <div class="empty-state">
+        <div class="empty-icon">♡</div>
+        <h2>Save your favorite moments</h2>
+        <p>Tap the heart on any quote or image from Today to add it here.</p>
+        <button class="empty-cta" type="button">Go to Today</button>
+      </div>
+    `
+    container.querySelector('.empty-cta').addEventListener('click', () => {
+      showView('today')
+    })
+    return
+  }
+
+  const cardsHtml = favorites
+    .map((favorite) => {
+      const imageHtml = favorite.imageUrl
+        ? `<img src="${favorite.imageUrl}" alt="" class="sanctuary-image" />`
+        : '<div class="sanctuary-image-placeholder"></div>'
+
+      return `
+        <div class="sanctuary-card">
+          ${imageHtml}
+          <p class="sanctuary-quote">${favorite.quote}</p>
+          <button class="remove-btn" type="button" data-id="${favorite.id}">♥</button>
+        </div>
+      `
+    })
+    .join('')
+
+  container.innerHTML = `
+    <h1>My sanctuary</h1>
+    <div class="sanctuary-grid">${cardsHtml}</div>
+  `
+
+  container.querySelectorAll('.remove-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      removeFavorite(Number(button.dataset.id))
+      renderSanctuary(container)
+    })
+  })
+}
 function renderHistory(container) {
   container.innerHTML = '<h1>Mood history</h1><p>7-day view goes here.</p>'
 }
