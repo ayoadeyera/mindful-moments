@@ -2,7 +2,8 @@ import '../css/style.css'
 import { renderMoodPicker } from './mood.js'
 import { getQuote } from './quote.js'
 import { getImage, triggerDownload } from './visual.js'
-import { saveFavorite, getFavorites, removeFavorite } from './storage.js'
+import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStreak } from './storage.js'
+import { getWeekDays, formatDateKey, summarizeWeek, MOOD_COLORS } from './history.js'
 
 
 function renderToday(container) {
@@ -101,6 +102,8 @@ function renderSanctuary(container) {
     })
   })
 }
+
+
 function renderHistory(container) {
   container.innerHTML = '<h1>Mood history</h1><p>7-day view goes here.</p>'
 }
