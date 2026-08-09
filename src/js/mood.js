@@ -5,9 +5,7 @@ const MOODS = ['Anxious', 'Tired', 'Peaceful', 'Grateful']
 
 let currentMood = null
 
-export function getCurrentMood() {
-  return currentMood
-}
+
 
 export function renderMoodPicker(container, onSelect) {
   container.innerHTML = ''

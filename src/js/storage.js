@@ -1,3 +1,7 @@
+import { formatDateKey } from './history.js'
+
+
+
 // Wraps localStorage reads/writes for saved favorites, so the rest of
 // the app never touches localStorage directly.
 
@@ -21,9 +25,6 @@ export function removeFavorite(id) {
 
 const MOOD_LOG_KEY = 'mindful-moments-mood-log'
 
-function formatDateKey(date) {
-  return date.toISOString().slice(0, 10)
-}
 
 export function getMoodLog() {
   const raw = localStorage.getItem(MOOD_LOG_KEY)
