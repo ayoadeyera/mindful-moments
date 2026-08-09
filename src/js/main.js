@@ -1,5 +1,7 @@
 import '../css/style.css'
 import { renderMoodPicker } from './mood.js'
+import { getQuote } from './quote.js'
+import { getImage, triggerDownload } from './visual.js'
 
 function renderToday(container) {
   container.innerHTML = `
@@ -9,9 +11,32 @@ function renderToday(container) {
   `
 
   const pickerEl = container.querySelector('#mood-picker')
-  renderMoodPicker(pickerEl, (mood) => {
-    console.log('Mood selected:', mood)
-    // Quote + image fetching hooks in here in the next step
+  renderMoodPicker(pickerEl, async (mood) => {
+    const resultEl = container.querySelector('#today-result')
+    resultEl.innerHTML = '<p class="loading">Finding something for you...</p>'
+
+    const [quote, image] = await Promise.all([getQuote(mood), getImage(mood)])
+
+    const imageHtml = image
+      ? `<img src="${image.url}" alt="${image.altText}" class="result-image" />`
+      : '<div class="result-image-placeholder"></div>'
+
+    const attributionHtml = image
+      ? `<p class="photo-credit">Photo by <a href="${image.photographerLink}" target="_blank" rel="noopener">${image.photographerName}</a> on <a href="${image.unsplashLink}" target="_blank" rel="noopener">Unsplash</a></p>`
+      : ''
+
+    resultEl.innerHTML = `
+      <div class="result-card">
+        ${imageHtml}
+        <blockquote>"${quote.content}"</blockquote>
+        <p class="quote-author">— ${quote.author}</p>
+        ${attributionHtml}
+      </div>
+    `
+
+    if (image) {
+      triggerDownload(image.downloadLocation)
+    }
   })
 }
 
