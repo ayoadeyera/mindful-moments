@@ -286,3 +286,8 @@ body {
     padding: 1rem;
   }
 }
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+}
