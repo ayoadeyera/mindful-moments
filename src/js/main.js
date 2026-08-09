@@ -15,6 +15,7 @@ function renderToday(container) {
 
   const pickerEl = container.querySelector('#mood-picker')
   renderMoodPicker(pickerEl, async (mood) => {
+    logMood(mood)
     const resultEl = container.querySelector('#today-result')
     resultEl.innerHTML = '<p class="loading">Finding something for you...</p>'
 
@@ -105,7 +106,58 @@ function renderSanctuary(container) {
 
 
 function renderHistory(container) {
-  container.innerHTML = '<h1>Mood history</h1><p>7-day view goes here.</p>'
+  const log = getMoodLog()
+  const streak = getStreak()
+
+  if (Object.keys(log).length === 0) {
+    container.innerHTML = `
+      <div class="history-header">
+        <h1>Mood history</h1>
+        <span class="streak-chip">Start your streak</span>
+      </div>
+      <div class="empty-state">
+        <div class="empty-icon">\u25A4</div>
+        <h2>Your week will show up here</h2>
+        <p>Check in once a day and we'll start tracking your patterns.</p>
+        <button class="empty-cta" type="button">Check in now</button>
+      </div>
+    `
+    container.querySelector('.empty-cta').addEventListener('click', () => showView('today'))
+    return
+  }
+
+  const days = getWeekDays()
+  const todayKey = formatDateKey(new Date())
+
+  const dotsHtml = days
+    .map(({ dateKey, label }) => {
+      const mood = log[dateKey]
+      let dotClass = 'day-dot'
+      let style = ''
+
+      if (mood) {
+        style = `background:${MOOD_COLORS[mood] || '#ccc'};`
+      } else if (dateKey < todayKey) {
+        dotClass += ' missed'
+      } else if (dateKey > todayKey) {
+        dotClass += ' upcoming'
+      }
+      if (dateKey === todayKey) dotClass += ' today-ring'
+
+      return `<div class="day-column"><div class="${dotClass}" style="${style}"></div><span>${label}</span></div>`
+    })
+    .join('')
+
+  container.innerHTML = `
+    <div class="history-header">
+      <h1>Mood history</h1>
+      <span class="streak-chip">${streak}-day streak</span>
+    </div>
+    <div class="history-card">
+      <div class="day-row">${dotsHtml}</div>
+      <p class="week-caption">${summarizeWeek(days, log)}</p>
+    </div>
+  `
 }
 
 const views = {
