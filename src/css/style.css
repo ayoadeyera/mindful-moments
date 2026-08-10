@@ -291,3 +291,41 @@ body {
   width: 32px;
   height: 32px;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card,
+.sanctuary-card,
+.history-card,
+.empty-state {
+  animation: fadeIn 0.4s ease;
+}
+
+.mood-btn {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-item {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.save-btn {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.remove-btn {
+  transition: transform 0.15s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.15);
+}
