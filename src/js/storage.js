@@ -66,3 +66,15 @@ export function getLastMood() {
 export function setLastMood(mood) {
   localStorage.setItem(LAST_MOOD_KEY, mood)
 }
+
+
+
+const LAST_MOOD_KEY = 'mindful-moments-last-mood'
+
+export function getLastMood() {
+  return localStorage.getItem(LAST_MOOD_KEY)
+}
+
+export function setLastMood(mood) {
+  localStorage.setItem(LAST_MOOD_KEY, mood)
+}

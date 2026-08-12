@@ -2,9 +2,10 @@
   --color-sage: #6b8e5a;
   --color-terracotta: #c97b4a;
   --color-sand: #e8e1d3;
+  --color-accent: #6b8e5a;
   --font-heading: "Quicksand", sans-serif;
   --font-body: "Roboto", sans-serif;
-  --color-accent: #6b8e5a;
+  
 }
 
 body {
@@ -244,7 +245,7 @@ body {
 }
 
 .mood-btn.selected {
-  background: var(--color-sage);
+  background: var(--color-accent);
   color: white;
   border-color: var(--color-sage);
   font-weight: 500;
@@ -353,4 +354,13 @@ body {
 
 .sanctuary-credit a {
   color: #999;
+}
+
+
+.streak-chip {
+  font-size: 0.75rem;
+  background: var(--color-accent);
+  color: white;
+  padding: 0.25rem 0.7rem;
+  border-radius: 10px;
 }
