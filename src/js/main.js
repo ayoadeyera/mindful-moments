@@ -91,7 +91,7 @@ function renderSanctuary(container) {
         : '<div class="sanctuary-image-placeholder"></div>'
 
       const creditHtml = favorite.photographerName
-      ? `<p class="sanctuary-credit">Photo by <a href="${favorite.photographerLink}" target="_blank" real="noopener">${favorite.photographerName}</a></p>`
+      ? `<p class="sanctuary-credit">Photo by <a href="${favorite.photographerLink}" target="_blank" rel="noopener">${favorite.photographerName}</a></p>`
       : ''
       
       
@@ -99,6 +99,7 @@ function renderSanctuary(container) {
         <div class="sanctuary-card">
           ${imageHtml}
           <p class="sanctuary-quote">${favorite.quote}</p>
+          ${creditHtml}
           <button class="remove-btn" type="button" data-id="${favorite.id}">♥</button>
         </div>
       `
