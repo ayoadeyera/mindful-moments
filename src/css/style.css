@@ -4,6 +4,7 @@
   --color-sand: #e8e1d3;
   --font-heading: "Quicksand", sans-serif;
   --font-body: "Roboto", sans-serif;
+  --color-accent: #6b8e5a;
 }
 
 body {
@@ -38,7 +39,7 @@ body {
 }
 
 .nav-item.active {
-  background: var(--color-sage);
+  background: var(--color-accent);
   color: white;
   font-weight: 500;
 }
@@ -71,9 +72,9 @@ body {
 }
 
 .mood-btn.selected {
-  background: var(--color-sage);
+  background: var(--color-accent);
   color: white;
-  border-color: var(--color-sage);
+  border-color: var(--color-accent);
   font-weight: 500;
 }
 
@@ -135,16 +136,16 @@ body {
 .save-btn {
   margin-top: 0.75rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--color-sage);
+  border: 1px solid var(--color-accent);
   border-radius: 8px;
   background: white;
-  color: var(--color-sage);
+  color: var(--color-accent);
   font-family: var(--font-body);
   cursor: pointer;
 }
 
 .save-btn:disabled {
-  background: var(--color-sage);
+  background: var(--color-accent);
   color: white;
   opacity: 1;
   cursor: default;
@@ -179,7 +180,7 @@ body {
   padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 8px;
-  background: var(--color-sage);
+  background: var(--color-accent);
   color: white;
   font-family: var(--font-body);
   cursor: pointer;

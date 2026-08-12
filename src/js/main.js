@@ -4,6 +4,10 @@ import { getQuote } from './quote.js'
 import { getImage, triggerDownload } from './visual.js'
 import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStreak } from './storage.js'
 import { getWeekDays, formatDateKey, summarizeWeek, MOOD_COLORS } from './history.js'
+import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStreak, getLastMood, setLastMood } from './storage.js'
+import { applyMoodTheme } from './theme.js'
+
+
 
 
 function renderToday(container) {
@@ -14,8 +18,10 @@ function renderToday(container) {
   `
 
   const pickerEl = container.querySelector('#mood-picker')
-  renderMoodPicker(pickerEl, async (mood) => {
+  renderMoodPicker(pickerEl, async (mood) => { 
     logMood(mood)
+    setLastMood(mood)
+    applyMoodTheme(mood)
     const resultEl = container.querySelector('#today-result')
     resultEl.innerHTML = '<p class="loading">Finding something for you...</p>'
 
@@ -46,9 +52,13 @@ function renderToday(container) {
     const saveBtn = resultEl.querySelector('.save-btn')
     saveBtn.addEventListener('click', () => {
       saveFavorite({
+        mood,
         quote: quote.content,
         author: quote.author,
         imageUrl: image ? image.url : null,
+        imageAlt: image ? image.altText : null,
+        photographerName: image ? image.photographerName : null,
+        photographerLink: image ? image.photographerLink : null,
       })
       saveBtn.textContent = '♥ Saved'
       saveBtn.disabled = true
@@ -182,5 +192,10 @@ navButtons.forEach((button) => {
     showView(button.dataset.view)
   })
 })
+
+const lastMood = getLastMood()
+if (lastMood) {
+  applyMoodTheme(lastMood)
+}
 
 showView('today')
