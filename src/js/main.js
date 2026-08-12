@@ -88,9 +88,14 @@ function renderSanctuary(container) {
   const cardsHtml = favorites
     .map((favorite) => {
       const imageHtml = favorite.imageUrl
-        ? `<img src="${favorite.imageUrl}" alt="" class="sanctuary-image" />`
+        ? `<img src="${favorite.imageUrl}" alt="${favorite.imageAlt || ''}" class="sanctuary-image" />`
         : '<div class="sanctuary-image-placeholder"></div>'
 
+      const creditHtml = favorite.photographerName
+      ? `<p class="sanctuary-credit">Photo by <a href="${favorite.photographerLink}" target="_blank" real="noopener">${favorite.photographerName}</a></p>`
+      : ''
+      
+      
       return `
         <div class="sanctuary-card">
           ${imageHtml}
