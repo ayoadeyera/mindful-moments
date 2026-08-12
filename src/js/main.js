@@ -203,4 +203,12 @@ if (lastMood) {
   applyMoodTheme(lastMood)
 }
 
+
+document.addEventListener('keydown', (event) => {
+  const shortcuts = { '1': 'today', '2': 'sanctuary', '3': 'history' }
+  if (shortcuts[event.key]) {
+    showView(shortcuts[event.key])
+  }
+})
+
 showView('today')
