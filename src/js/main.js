@@ -4,7 +4,6 @@ import { getQuote } from './quote.js'
 import { getImage, triggerDownload } from './visual.js'
 import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStreak, getLastMood, setLastMood } from './storage.js'
 import { getWeekDays, formatDateKey, summarizeWeek, MOOD_COLORS } from './history.js'
-import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStreak, getLastMood, setLastMood } from './storage.js'
 import { applyMoodTheme } from './theme.js'
 
 
