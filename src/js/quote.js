@@ -35,11 +35,13 @@ const FALLBACK_QUOTES = {
   ],
 }
 
+// Picks a random quote from the local bank for the given mood.
 function getFallbackQuote(mood) {
   const pool = FALLBACK_QUOTES[mood] || FALLBACK_QUOTES.Peaceful
   return pool[Math.floor(Math.random() * pool.length)]
 }
 
+// Tries the live API first; falls back to a local quote on any failure.
 export async function getQuote(mood) {
   const tag = MOOD_TAGS[mood] || 'wisdom'
 

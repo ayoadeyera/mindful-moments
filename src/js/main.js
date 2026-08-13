@@ -1,3 +1,6 @@
+// App entry point: renders each view (Today, Sanctuary, History) into
+// #view-container and wires up navigation between them.
+
 import '../css/style.css'
 import { renderMoodPicker } from './mood.js'
 import { getQuote } from './quote.js'
@@ -6,9 +9,7 @@ import { saveFavorite, getFavorites, removeFavorite, getMoodLog, logMood, getStr
 import { getWeekDays, formatDateKey, summarizeWeek, MOOD_COLORS } from './history.js'
 import { applyMoodTheme } from './theme.js'
 
-
-
-
+// Renders the mood picker and, once a mood is selected, the quote/image result.
 function renderToday(container) {
   container.innerHTML = `
     <h1>How are you feeling today?</h1>
@@ -17,7 +18,7 @@ function renderToday(container) {
   `
 
   const pickerEl = container.querySelector('#mood-picker')
-  renderMoodPicker(pickerEl, async (mood) => { 
+  renderMoodPicker(pickerEl, async (mood) => {
     logMood(mood)
     setLastMood(mood)
     applyMoodTheme(mood)
@@ -65,6 +66,7 @@ function renderToday(container) {
   })
 }
 
+// Renders saved favorites, or an empty-state prompt if none exist yet.
 function renderSanctuary(container) {
   const favorites = getFavorites()
 
@@ -91,10 +93,9 @@ function renderSanctuary(container) {
         : '<div class="sanctuary-image-placeholder"></div>'
 
       const creditHtml = favorite.photographerName
-      ? `<p class="sanctuary-credit">Photo by <a href="${favorite.photographerLink}" target="_blank" rel="noopener">${favorite.photographerName}</a></p>`
-      : ''
-      
-      
+        ? `<p class="sanctuary-credit">Photo by <a href="${favorite.photographerLink}" target="_blank" rel="noopener">${favorite.photographerName}</a></p>`
+        : ''
+
       return `
         <div class="sanctuary-card">
           ${imageHtml}
@@ -119,7 +120,7 @@ function renderSanctuary(container) {
   })
 }
 
-
+// Renders the 7-day mood dashboard, or an empty-state prompt if no check-ins exist yet.
 function renderHistory(container) {
   const log = getMoodLog()
   const streak = getStreak()
@@ -184,6 +185,7 @@ const views = {
 const viewContainer = document.querySelector('#view-container')
 const navButtons = document.querySelectorAll('.nav-item')
 
+// Renders the given view and updates which nav button is marked active.
 function showView(viewName) {
   views[viewName](viewContainer)
 
@@ -198,12 +200,13 @@ navButtons.forEach((button) => {
   })
 })
 
+// Restore the accent color from the last visit, before the first render.
 const lastMood = getLastMood()
 if (lastMood) {
   applyMoodTheme(lastMood)
 }
 
-
+// Keyboard shortcuts: 1/2/3 switch between Today, Sanctuary, and History.
 document.addEventListener('keydown', (event) => {
   const shortcuts = { '1': 'today', '2': 'sanctuary', '3': 'history' }
   if (shortcuts[event.key]) {

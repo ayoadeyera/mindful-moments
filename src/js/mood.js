@@ -5,8 +5,7 @@ const MOODS = ['Anxious', 'Tired', 'Peaceful', 'Grateful']
 
 let currentMood = null
 
-
-
+// Draws the mood buttons and re-renders on each click to update the selected state.
 export function renderMoodPicker(container, onSelect) {
   container.innerHTML = ''
 

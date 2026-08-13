@@ -14,6 +14,7 @@ const MOOD_QUERIES = {
 
 const imageCache = {}
 
+// Returns a cached image if one exists this session, otherwise fetches a new one.
 export async function getImage(mood) {
   if (imageCache[mood]) {
     return imageCache[mood]
@@ -50,6 +51,7 @@ export async function getImage(mood) {
   }
 }
 
+// Pings Unsplash's download endpoint, required by their API terms whenever a photo is shown.
 export function triggerDownload(downloadLocation) {
   fetch(downloadLocation, {
     headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
