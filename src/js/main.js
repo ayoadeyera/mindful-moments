@@ -149,18 +149,27 @@ function renderHistory(container) {
     .map(({ dateKey, label }) => {
       const mood = log[dateKey]
       let dotClass = 'day-dot'
-      let style = ''
+      let inlineStyle = ''
 
       if (mood) {
-        style = `background:${MOOD_COLORS[mood] || '#ccc'};`
+        // Active logged mood gets its background color
+        inlineStyle = `background-color: ${MOOD_COLORS[mood] || '#ccc'};`
       } else if (dateKey < todayKey) {
         dotClass += ' missed'
       } else if (dateKey > todayKey) {
         dotClass += ' upcoming'
       }
-      if (dateKey === todayKey) dotClass += ' today-ring'
 
-      return `<div class="day-column"><div class="${dotClass}" style="${style}"></div><span>${label}</span></div>`
+      if (dateKey === todayKey) {
+        dotClass += ' today-ring'
+      }
+
+      return `
+        <div class="day-column">
+          <div class="${dotClass}" style="${inlineStyle}"></div>
+          <span class="day-label">${label}</span>
+        </div>
+      `
     })
     .join('')
 
