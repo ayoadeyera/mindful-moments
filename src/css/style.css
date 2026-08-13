@@ -8,6 +8,10 @@
   
 }
 
+h1, h2, .brand span {
+  font-family: var(--font-heading);
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -21,7 +25,9 @@ body {
 
 
 .nav-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   width: 100%;
   text-align: left;
   padding: 0.6rem 0.8rem;
@@ -35,13 +41,19 @@ body {
   cursor: pointer;
 }
 
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .nav-item:hover {
   background: #ddd6c8;
 }
 
 .nav-item.active {
-  background: var(--color-accent);
-  color: white;
+  background: #dde3cb;
+  color: var(--color-accent);
   font-weight: 500;
 }
 
@@ -88,7 +100,7 @@ body {
 .result-card {
   max-width: 420px;
   padding: 1.25rem;
-  border: 1px solid #ccc;
+  border: 1px solid #e6ddc9;
   border-radius: 12px;
   background: white;
 }
@@ -196,7 +208,7 @@ body {
 
 .sanctuary-card {
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid #e6ddc9;
   border-radius: 10px;
   overflow: hidden;
   background: white;
@@ -277,10 +289,13 @@ body {
     width: 100%;
   }
 
-  .nav-item {
+.nav-item {
+    flex-direction: column;
+    gap: 0.2rem;
     width: auto;
     text-align: center;
     margin-bottom: 0;
+    font-size: 0.75rem;
   }
 
   .content {
