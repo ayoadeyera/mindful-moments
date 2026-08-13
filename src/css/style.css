@@ -105,6 +105,14 @@ body {
   background: white;
 }
 
+.history-card {
+  max-width: 420px;
+  padding: 1.25rem;
+  border: 1px solid #e6ddc9;
+  border-radius: 12px;
+  background: white;
+}
+
 .result-image-placeholder {
   height: 160px;
   background: #ccc4b3;
@@ -374,8 +382,8 @@ body {
 
 .streak-chip {
   font-size: 0.75rem;
-  background: var(--color-accent);
-  color: white;
+  background: #e0e4f9;
+  color: #4a55a3;
   padding: 0.25rem 0.7rem;
   border-radius: 10px;
 }
