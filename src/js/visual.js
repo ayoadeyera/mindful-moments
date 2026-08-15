@@ -24,7 +24,7 @@ export async function getImage(mood) {
 
   try {
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape`,
+      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape&w=800`,
       { headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` } }
     )
 
