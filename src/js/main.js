@@ -74,7 +74,7 @@ function renderSanctuary(container) {
     container.innerHTML = `
       <h1>My sanctuary</h1>
       <div class="empty-state">
-        <div class="empty-icon">♡</div>
+        <div class="empty-icon" aria-hidden="true">♡</div>
         <h2>Save your favorite moments</h2>
         <p>Tap the heart on any quote or image from Today to add it here.</p>
         <button class="empty-cta" type="button">Go to Today</button>
@@ -101,7 +101,7 @@ function renderSanctuary(container) {
           ${imageHtml}
           <p class="sanctuary-quote">${favorite.quote}</p>
           ${creditHtml}
-          <button class="remove-btn" type="button" data-id="${favorite.id}">♥</button>
+          <button class="remove-btn" type="button" data-id="${favorite.id}" aria-label="Remove from sanctuary">♥</button>
         </div>
       `
     })
@@ -132,7 +132,7 @@ function renderHistory(container) {
         <span class="streak-chip">Start your streak</span>
       </div>
       <div class="empty-state">
-        <div class="empty-icon">\u25A4</div>
+        <div class="empty-icon" aria-hidden="true">\u25A4</div>
         <h2>Your week will show up here</h2>
         <p>Check in once a day and we'll start tracking your patterns.</p>
         <button class="empty-cta" type="button">Check in now</button>
@@ -166,7 +166,7 @@ function renderHistory(container) {
 
       return `
         <div class="day-column">
-          <div class="${dotClass}" style="${inlineStyle}"></div>
+          <div class="${dotClass}" style="${inlineStyle}" title="${mood || 'Not logged'}"></div>
           <span class="day-label">${label}</span>
         </div>
       `

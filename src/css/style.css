@@ -2,7 +2,8 @@
   --color-sage: #6b8e5a;
   --color-terracotta: #c97b4a;
   --color-sand: #e8e1d3;
-  --color-accent: #6b8e5a;
+  --color-accent: #4f6942;
+  --color-muted: #646464;
   --font-heading: "Quicksand", sans-serif;
   --font-body: "Roboto", sans-serif;
   
@@ -111,7 +112,7 @@ body {
 
 
 .loading {
-  color: #888;
+  color: var(--color-muted);
   font-style: italic;
 }
 
@@ -156,7 +157,7 @@ body {
 
 .quote-author {
   margin: 0;
-  color: #777;
+  color: var(--color-muted);
   font-size: 0.9rem;
 }
 
@@ -173,12 +174,12 @@ body {
 
 .photo-credit {
   font-size: 0.75rem;
-  color: #999;
+  color: var(--color-muted);
   margin-top: 0.5rem;
 }
 
 .photo-credit a {
-  color: #999;
+  color: var(--color-muted);
 }
 
 
@@ -210,7 +211,7 @@ body {
 
 .empty-icon {
   font-size: 2rem;
-  color: #999;
+  color: var(--color-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -220,7 +221,7 @@ body {
 }
 
 .empty-state p {
-  color: #777;
+  color: var(--color-muted);
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
@@ -292,12 +293,6 @@ body {
   cursor: pointer;
 }
 
-.mood-btn.selected {
-  background: var(--color-accent);
-  color: white;
-  border-color: var(--color-sage);
-  font-weight: 500;
-}
 
 @media (max-width: 640px) {
   #app {
@@ -398,13 +393,13 @@ body {
 
 .sanctuary-credit {
   font-size: 0.65rem;
-  color: #999;
+  color: var(--color-muted);
   padding: 0 0.6rem 0.5rem;
   margin: 0;
 }
 
 .sanctuary-credit a {
-  color: #999;
+  color: var(--color-muted);
 }
 
 
